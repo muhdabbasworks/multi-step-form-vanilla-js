@@ -1,0 +1,599 @@
+:root {
+    --clr-blue-950: hsl(213, 96%, 18%);
+    --clr-purple-600: hsl(243, 100%, 62%);
+    --clr-blue-300: hsl(228, 100%, 84%);
+    --clr-blue-200: hsl(206, 94%, 87%);
+    --clr-red-500: hsl(354, 84%, 57%);
+
+    --clr-grey-500: hsl(231, 11%, 63%);
+    --clr-purple-200: hsl(229, 24%, 87%);
+    --clr-blue-100: hsl(218, 100%, 97%);
+    --clr-blue-50: hsl(231, 100%, 99%);
+    --clr-white: hsl(0, 100%, 100%);
+
+    --ff-sans: "Ubuntu", system-ui, sans-serif;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+
+    /* ==========================================
+    TIER 2: SEMANTIC MAPPING (Functional Tokens)
+     ========================================== */
+
+    /* Brand/Interactive Contexts */
+    --primary: var(--clr-blue-950);
+    --primary-hover: var(--clr-purple-600);
+    --error: var(--clr-red-500);
+
+    /* UI Backgrounds */
+    --bg-page: var(--clr-blue-100);
+    --bg-surface: var(--clr-white);
+    --bg-form-accent: var(--clr-blue-100);
+    --bg-form-input: var(--clr-blue-200);
+
+    /* Borders & Dividers */
+    --border-subtle: var(--clr-purple-200);
+    --border-focus: var(--clr-purple-600);
+
+    /* Typography Roles */
+    --text-main: var(--clr-blue-950);
+    --text-muted: var(--clr-grey-500);
+    --text-inverse: var(--clr-white);
+
+    /* Typography Sizing (Based on 16px body copy) */
+    --fs-body: 1.6rem;
+    --fs-sm: 1.4rem;
+    --fs-md: 2.0rem;
+    --fs-lg: 2.4rem;
+    --fs-xl: 3.2rem;
+
+    /* Spacing Scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+    --space-2xl: 8rem;
+
+    /* Radii */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+
+    /* Effects */
+    --shadow-card: 5px 10px 15px hsl(0 0% 0% / 0.14);
+
+    /* ==========================================
+    LAYOUT & RESPONSIVE BREAKPOINTS
+    ========================================== */
+    --breakpoint-small-screen: 768px;
+    --breakpoint-desktop: 1440px;
+
+    --form-max-width: 800px;
+    --container-max-width: 1440px;
+    --container-inline-padding: 1rem;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    font-family: var(--ff-sans);
+    font-weight: var(--fw-regular);
+    background-color: var(--bg-page);
+}
+
+/* ==========================================
+    LAYOUT
+   ========================================== */
+.multi-step-form {
+    max-width: var(--container-max-width);
+    margin: auto;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    width: min(var(--form-max-width), 90%);
+    margin: var(--space-2xl) auto;
+    padding: var(--space-md);
+
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+/* ==========================================
+    STEP NAVIGATION
+   ========================================== */
+.side-bar {
+    background-color: var(--clr-purple-600);
+    color: var(--text-inverse);
+    padding: var(--space-xl);
+    display: flex;
+    /* justify-content: center; */
+    
+    border-radius: var(--radius-sm);
+}
+
+.side-bar ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.step__title {
+    display: none;
+}
+
+.step__title .step__number {
+    display: block;
+    font-size: var(--fs-sm);
+    color: var(--clr-blue-300);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.step__title .step__name {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.05em;
+}
+
+.btn--step {
+    color: inherit;
+    background: transparent;
+    border: 1px solid var(--clr-blue-300);
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: var(--fw-bold);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn--step:hover,
+.btn--step:focus-visible {
+    border-color: var(--bg-surface);
+    outline: none;
+}
+
+.btn--active {
+    background-color: var(--clr-blue-100);
+    color: var(--clr-purple-600);
+    border-color: var(--clr-white);
+}
+
+/* ==========================================
+    FORM STEP
+   ========================================== */
+.form__step {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form__header h1 {
+    font-size: var(--fs-lg);
+}
+
+.form__header p {
+    color: var(--text-muted);
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.form__group label {
+    font-size: var(--fs-sm);
+}
+
+.form__group input {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    font: inherit;
+}
+
+.form__group input:focus-visible {
+    outline: none;
+    border-color: var(--border-focus);
+}
+
+.btn--primary {
+    background-color: var(--primary);
+    color: var(--text-inverse);
+    border: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font: inherit;
+    margin-right: 0;
+}
+
+.btn--light-grey {
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font: inherit;
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.btn--light-grey:hover {
+    color: var(--primary);
+}
+
+#btn-next {
+    margin-left: auto;
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+    background-color: var(--primary-hover);
+    outline: none;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--space-lg);
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+.form__group--plan {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.plan-card {
+    position: relative;
+    flex: 1;
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-md);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.plan-card__title {
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card__input {
+    position: absolute;
+    opacity: 0;
+    /* still focusable and clickable — just visually hidden, not display:none */
+}
+
+.plan-card__icon {
+    width: 4rem;
+    
+}
+
+.plan-card__name {
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-md);
+}
+
+
+.plan-card__price {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.plan-card__benefit {
+    font-size: var(--fs-sm);
+}
+
+/* Checked state — styles the card via the sibling input's state */
+.plan-card:has(.plan-card__input:checked) {
+    border-color: var(--primary);
+    background-color: var(--bg-form-accent);
+}
+
+/* Visible focus ring for keyboard users tabbing to the hidden input */
+.plan-card:has(.plan-card__input:focus-visible) {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+
+/* =====================
+    Toggle Button
+*/
+
+
+
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    background-color: var(--bg-form-accent);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+}
+
+.billing-toggle__label {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    color: var(--text-muted);
+}
+
+.billing-toggle__label--active {
+    color: var(--text-main);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.toggle-switch__input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.toggle-switch__track {
+    position: absolute;
+    inset: 0;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-switch__handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--bg-surface);
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.toggle-switch__input:checked ~ .toggle-switch__handle {
+    transform: translateX(20px);
+}
+
+.toggle-switch__input:focus-visible ~ .toggle-switch__track {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ==========================================
+   ADD-ON CARDS
+   ========================================== */
+#addon-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.addon-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.addon-card:has(.addon-card__input:checked) {
+    border-color: var(--primary);
+    background-color: var(--bg-form-accent);
+}
+
+.addon-card:has(.addon-card__input:focus-visible) {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* Custom checkbox: real input sits invisibly on top of a styled visual box */
+.addon-card__checkbox-wrap {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+}
+
+.addon-card__input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.addon-card__checkbox {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.4rem;
+    background-color: var(--bg-surface);
+    pointer-events: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.addon-card__checkbox::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.9rem;
+    border: solid var(--bg-surface);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg) scale(0);
+    transition: transform 0.15s ease;
+}
+
+.addon-card__input:checked ~ .addon-card__checkbox {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.addon-card__input:checked ~ .addon-card__checkbox::after {
+    transform: translate(-50%, -60%) rotate(45deg) scale(1);
+}
+
+/* Text block */
+.addon-card__text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.addon-card__name {
+    font-weight: var(--fw-bold);
+}
+
+.addon-card__desc {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+.addon-card__price {
+    font-size: var(--fs-sm);
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+
+.details {
+    background-color: var(--clr-blue-100);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+}
+
+.details__plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+#details__services {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--clr-blue-300) ;
+}
+
+.service {
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn-change {
+    text-decoration: underline;
+}
+
+.confirmation {
+    text-align: center;
+    padding: var(--space-xl);
+}
+.total-plan {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        grid-template-columns: auto 1fr;
+    }
+
+
+    .side-bar {
+        align-items: flex-start;
+        grid-row: 1/3;
+    }
+
+    .side-bar ul {
+        flex-direction: column;
+    }
+
+    .step__title {
+        display: block;
+    }
+
+    .form__group--plan {
+        flex-direction: row;
+    }
+
+    .plan-card {
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .btns {
+        grid-column: 2/3;
+        padding: var(--space-lg);
+    }
+
+}
